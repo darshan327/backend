@@ -1,0 +1,115 @@
+1) What is the Role of Backend in a Web Application? How Does It Differ from Frontend?
+
+  The backend is the server-side part of a web application.
+   It processes user requests, performs business logic,
+    communicates with the database, and sends the required data back to the frontend.
+
+    The backend is not directly visible to users, but it is responsible for making the application work.
+
+    Example:
+      You click the Login button.
+      
+      Backend:
+      
+      Receives username and password.
+      Checks if they are correct.
+      Returns success or failure.
+
+
+2) Explain what an HTTP request is and list the common HTTP methods (e.g., GET, POST).      
+
+    An HTTP Request is a message sent by the client (browser or app) to the server asking it to perform an action or provide data.
+
+    3. How does it work?
+      User performs an action (e.g., clicks a button).
+      Browser sends an HTTP request to the server.
+      Server processes the request.
+      Server sends back an HTTP response.
+
+      You go to a restaurant and tell the waiter, "Bring me a pizza."
+
+        You → Client
+        Waiter → HTTP Request
+        Kitchen → Server
+        Pizza → HTTP Response 
+
+        Common HTTP Methods
+          1. GET
+          
+          Purpose: Retrieve data from the server.
+          
+          Example: View all products in an e-commerce app.
+
+          2. POST
+
+          Purpose: Send new data to the server.
+          
+          Example: Register a new user or place an order.
+
+          3. PUT
+
+          Purpose: Update an existing resource completely.
+          
+          Example: Update all details of a user's profile.
+
+          4. PATCH
+
+          Purpose: Update only specific fields of a resource.
+          
+          Example: Change only the user's phone number.
+          
+          5. DELETE
+
+             Purpose: Remove data from the server.
+             
+             Example: Delete a product from the cart.
+
+
+3) What is a server, and how does it handle a client’s request?  
+    A server is a computer or software that receives requests from clients, processes them, and sends back a response.   
+    
+     4. Real-life example
+
+       Think of a bank:
+       
+       Customer → Client
+       Bank employee → Server
+       Bank records → Database
+       
+       When you ask for your account balance,
+        the employee checks the records and tells you
+         the balance. Similarly, the server checks the database and sends the requested data back to the client.    
+
+
+4) What’s the difference between a relational database and a non-relational (NoSQL) database?                       
+
+   Relational Database (SQL):
+     Stores data in tables (rows and columns) with relationships between them.
+
+   Non-Relational Database (NoSQL):
+     Stores data in documents, key-value pairs, graphs, or columns instead of tables.  
+
+
+     Relational (SQL)	        Non-Relational (NoSQL)
+  Stores data in tables	          Stores data as documents, key-value, etc.
+  Fixed schema	                  Flexible schema
+  Uses SQL	                      Does not require SQL
+  Best for structured data	      Best for unstructured/flexible data
+  Example: MySQL, PostgreSQL	  Example: MongoDB, Cassandra
+
+    Relational Database:
+     A college database where Students, Teachers, and Courses are connected through relationships.
+
+     Non-Relational Database:
+      A social media app where each user's profile 
+      can have different information (bio, photos, videos, interests), making a flexible structure more suitable.
+
+
+5) How does a backend application use environment variables, and why are they important?
+
+    Environment variables are values stored outside the source code. They are used to store sensitive
+     or configurable information such as database passwords and API keys.
+
+     Store values in a .env file.
+     Load them into the application (e.g., using the dotenv package in Node.js).
+     Access them using process.env.VARIABLE_NAME.

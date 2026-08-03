@@ -1,0 +1,89 @@
+11) How would you handle a situation where a client sends invalid data to your API?
+
+    When a client sends invalid or incomplete data, the backend validates it and returns
+     an appropriate error instead of processing it.
+
+     How does it work?
+       Client sends data to the API.
+       Backend validates the data.
+       If the data is invalid, the server returns an error (usually 400 Bad Request).
+       If valid, the backend processes the request and stores the data.
+
+
+12) Explain the difference between authentication and authorization with a simple example.  
+
+     1. Authentication
+
+         Definition:
+         Authentication is the process of verifying who the user is.
+         
+         Example:
+         You enter your username and password to log in.
+
+     2. Authorization
+
+         Definition:
+         Authorization is the process of checking what the user is allowed to access.
+         
+         Example:
+         After logging in, an admin can delete products, but a customer cannot.   
+
+
+13) What’s the purpose of middleware in a backend application, and how might you use it?     
+
+    Middleware is a function that runs between the client request and the final route handler.
+     It can process, modify, or validate the request before it reaches the route.
+    
+     How does it work?
+       Client sends a request.
+       Middleware executes.
+       If everything is valid, it passes the request to the route.
+       Otherwise, it returns an error response
+
+14) How would you design a simple database schema for a blog with users, posts, and comments?
+
+    A database schema defines how data is organized into tables and how those tables are related
+
+ Schema
+
+     Users
+        
+        User_ID (Primary Key)
+        Name
+        Email
+        Password
+        
+     Posts
+        
+        Post_ID (Primary Key)
+        Title
+        Content
+        User_ID (Foreign Key)
+        
+     Comments
+        
+        Comment_ID (Primary Key)
+        Comment
+        User_ID (Foreign Key)
+        Post_ID (Foreign Key)
+
+
+   Relationship
+
+     One User → Many Posts
+     One Post → Many Comments
+     One User → Many Comments     
+             
+
+15) What are HTTP status codes, and what do 200, 404, and 500 specifically mean?          
+
+    HTTP Status Codes are 3-digit numbers returned by the server to indicate the result of a client's request.
+
+     Common Status Codes
+       200 OK → Request was successful.
+       201 Created → New resource created successfully.
+       400 Bad Request → Client sent invalid data.
+       401 Unauthorized → User is not authenticated.
+       403 Forbidden → User is authenticated but doesn't have permission.
+       404 Not Found → Requested resource does not exist.
+       500 Internal Server Error → Server encountered an unexpected error  

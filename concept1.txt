@@ -1,0 +1,54 @@
+6) What is an API, and why do we use it in backend development?
+
+   An API (Application Programming Interface) is a set of rules
+    that allows the frontend and backend (or two applications) to communicate with each other.
+
+    3. How does it work?
+
+      Frontend sends an API request.
+      Backend receives the request.
+      Backend processes it and accesses the database if needed.
+      Backend returns the response
+
+      Example:
+      
+      GET /api/products
+      POST /api/users/login
+
+
+ 7) Explain what a primary key is in a database and why it’s necessary.     
+    A Primary Key is a column (or set of columns) that uniquely identifies each row in a table.
+
+    Uniquely identifies every record.
+    Prevents duplicate records.
+    Cannot contain NULL values.
+    Helps create relationships between tables.
+      
+
+ 8) What does it mean for a server to be "stateless," and how does this relate to REST APIs?      
+      A stateless server does not remember information about previous client requests. Every request is treated as a new, independent request.
+      
+      3. How does it work?
+          Client sends a request.
+          Server processes it.
+          Server sends the response.
+          Server does not store the client's previous request.
+
+
+ 9) How would you store user passwords securely in a database?  
+     Passwords should never be stored as plain text. They should be hashed before saving them in the database.    
+
+     How does it work?
+       User enters a password.
+       Backend hashes the password (e.g., using bcrypt).
+       The hashed password is stored in the database.
+       During login, the entered password is hashed and compared with the stored hash.   
+
+
+ 10) What is the purpose of a configuration file in a backend application?     
+      A configuration file stores application settings such as the port number, database URL, API keys, and other options.
+
+       How does it work?
+          Store configuration values (often in a .env file or config file).
+          Backend reads these values when it starts.
+          The application uses these settings while running.

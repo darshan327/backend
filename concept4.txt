@@ -1,0 +1,81 @@
+21) How would you design a scalable URL shortening service like Bitly that handles millions of requests per day?
+
+   A URL shortening service converts a long URL into a short, unique URL.
+
+    Example:
+      Original:
+       https://www.example.com/products/mobile/samsung-galaxy-s25
+       
+       Short:
+       https://bit.ly/Ab12X
+
+       User submits a long URL.
+       Backend generates a unique short code (e.g., Ab12X).
+       Stores the mapping in the database.
+       When someone visits the short URL, the backend finds the original URL and redirects the user.
+
+
+22) Explain the trade-offs between monolithic and microservices architectures in terms of deployment, scalability, and maintenance.
+
+    Monolithic Architecture: All features (login, products, orders, payments) are built as one application.
+    Microservices Architecture: Each feature is built as a separate independent service.
+
+    Monolithic: Best for small and medium-sized applications.
+    Microservices: Best for large applications with millions of users.
+
+
+      Trade-offs
+         Feature	              Monolithic	                 Microservices
+         Deployment	    Deploy the entire application	        Deploy each service independently
+         Scalability	Scale the whole application	           Scale only the required service
+         Maintenance	Easier for small projects	            Easier for large projects but more complex
+         Development	Simpler	More complex                      more complex
+
+
+
+23) How would you architect a real-time chat application backend to support thousands of concurrent users?     
+
+      A real-time chat backend allows users to send and receive messages instantly without refreshing the page.
+
+      How does it work?
+        User logs in.
+        Opens a WebSocket connection.
+        Sends a message.
+        Backend receives the message.
+        Stores it in the database.
+        Redis broadcasts the message to the correct server.
+        Recipient receives the message instantly.
+
+         
+         1. Functional Requirements
+
+              Definition:
+              Functional requirements describe what the system should do.
+              
+              Examples
+              User can register.
+              User can log in.
+              User can add products to the cart.
+              User can make payments.
+              User can send messages.
+
+
+         2. Non-Functional Requirements
+
+              Definition:
+              Non-functional requirements describe how well the system should perform.
+              
+              Examples
+              Response time should be less than 2 seconds.
+              Support 10,000 concurrent users.
+              99.9% uptime.
+              Secure user data.
+              Easy to scale.       
+
+             Socket	Pub/Sub
+                Client ↔ Server communication	Server ↔ Server communication
+                Real-time connection	Message distribution pattern
+                Uses WebSocket	Often uses Redis, Kafka, RabbitMQ
+                Example: Chat between two users	Sending chat messages to all backend servers          
+
+                

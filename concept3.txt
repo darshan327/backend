@@ -1,0 +1,98 @@
+16) How would you write a basic API endpoint to retrieve a list of users from a database?
+
+     An API endpoint is a URL that the client uses to communicate with the backend
+
+     How does it work?
+      Client sends a GET request to /users.
+      Backend retrieves all users from the database.
+      Backend sends the user list as a JSON response.
+
+      app.get("/users", async (req, res) => {
+          const users = await User.find();
+          res.status(200).json(users);
+      });
+
+
+17) What’s the difference between a GET request and a POST request in terms of data handling?
+
+     GET: Used to retrieve data from the server.
+     POST: Used to send data to the server to create a new resource.
+
+       Difference in Data Handling
+              GET	                                        POST
+        Retrieves data	                                 Sends data
+        Data is sent in the URL (query parameters)    	Data is sent in the request body
+        Less secure for sensitive data               	More secure for sensitive data (data isn't in the URL)
+        Can be bookmarked	                            Cannot be bookmarked
+        Does not modify data	                        Usually creates or modifies data 
+
+
+      GET ->
+
+       GET /users?id=101 
+       Retrieves the user with ID 101.
+
+     POST ->  
+
+         POST /users
+
+         {
+            "name": "darshu",
+            "email": "darshan@gmail.com"
+          }
+
+
+18) How would you prevent a backend API from crashing if a database connection fails?
+
+      Connect to the database when the server starts.
+      Wrap database operations in try-catch blocks.
+      If the database connection fails, catch the error.
+      Return 500 Internal Server Error and log the error
+
+  try {
+    const users = await User.find();
+    res.status(200).json(users);
+} catch (error) {
+    console.error(error);
+    res.status(500).json({
+        message: "Database connection failed"
+    });
+}    
+
+Answer: I would use try-catch blocks to
+ handle database errors, log the error for debugging,
+  and return a 500 Internal Server Error response while keeping the server running.
+
+
+19) Explain what caching is and how it can improve the performance of a backend system.  
+
+    Caching is the process of storing frequently accessed data in temporary memory
+     so it can be returned quickly without querying the database every time.
+
+     Client requests data.
+     Backend checks the cache.
+     If data is in the cache (Cache Hit), it returns the data immediately.
+     If not (Cache Miss), the backend fetches the data from the database, stores it in the cache, and returns it.
+
+
+20) How would you log errors in a backend application, and why is logging important?
+
+    Error logging means recording errors that occur in the backend so developers can identify and fix issues.
+
+      How does it work?
+          An error occurs.
+          Catch the error using try-catch.
+          Log the error (using console.error() or logging libraries like Winston or Morgan).
+          Return an appropriate error response to the client.
+          
+          try {
+               const users = await User.find();
+           } catch (error) {
+               console.error(error);
+               res.status(500).json({ message: "Internal Server Error" });
+           }
+           
+    Imagine a hospital.
+
+      Every patient problem is recorded in a medical record.
+      Doctors use those records to diagnose and treat patients.

@@ -1,0 +1,108 @@
+26) How would you handle database schema migrations in a zero-downtime deployment?
+
+   A zero-downtime migration updates the database schema without stopping the application.
+
+
+   How does it work?
+     Add new columns/tables without removing old ones.
+     Deploy the new backend that supports both old and new schemas.
+     Migrate the existing data if needed.
+     Once everything is working, remove the old columns in a later deployment.
+
+     Rolling Migration
+
+      How does it work?
+        Multiple backend servers are running.
+        Update Server 1 while the others continue serving users.
+        After Server 1 is healthy, update Server 2.
+        Repeat until all servers are updated.
+
+
+27) Explain how you’d design a content delivery system with low latency for global users.
+
+     A Content Delivery System delivers content (images, videos, CSS, JavaScript, files) to users from the nearest server to reduce loading time.
+
+     How does it work?
+       Store content on a CDN (Content Delivery Network).
+       CDN copies the content to servers around the world.
+       When a user requests content, the CDN serves it from the nearest server.
+       If the content is not available, the CDN fetches it from the origin server and caches it.
+
+      User → Nearest CDN Server → Origin Server (only if needed) 
+
+     Use a CDN with edge servers worldwide. Cache static content (images, videos, CSS, JavaScript) at edge locations
+      so users receive content from the nearest server, reducing latency and decreasing the load on the origin server 
+
+
+28) What’s the difference between horizontal and vertical scaling, and when would you choose one over the other?
+
+     Vertical Scaling (Scale Up): Increase the power of an existing server (CPU, RAM, Storage).
+     Horizontal Scaling (Scale Out): Add more servers to share the workload.
+
+      Difference
+           Vertical Scaling     	Horizontal Scaling
+           Upgrade one server	      Add more servers
+           Easier to implement	      More scalable
+           Limited by hardware	      Can scale almost indefinitely
+           Single point of failure	  More fault tolerant
+
+
+        When to choose?
+           Vertical Scaling: Small to medium applications with moderate traffic.
+           Horizontal Scaling: Large applications with millions of users (e.g., Amazon, Netflix, WhatsApp).     
+
+
+          Vertical scaling increases the resources of a single server (CPU, RAM).
+          Horizontal scaling adds more servers to distribute the workload.
+          For large-scale systems, horizontal scaling is generally preferred because it provides better scalability and high availability. 
+
+
+29) How would you design a notification system that supports email, SMS, and push notifications with retry mechanisms?
+
+     How would you design a notification system that supports email, SMS, and push notifications with retry mechanisms?
+ 
+        How does it work?
+           User performs an action (e.g., places an order).
+           Backend creates a notification request.
+           The request is placed into a Message Queue (RabbitMQ/Kafka).
+           Worker services pick up the request.
+           The appropriate service sends the notification:
+           Email → SMTP/SendGrid
+           SMS → Twilio
+           Push → Firebase Cloud Messaging (FCM)
+           If sending fails, the queue retries after a delay.
+           After several failed attempts, the notification is moved to a Dead Letter Queue (DLQ) for later inspection
+
+
+           Client → Backend API → Message Queue → Notification Workers → Email/SMS/Push Providers
+
+
+           Answer: Use a message queue to process notifications asynchronously, separate workers 
+           for Email, SMS, and Push, implement retry mechanisms for failed deliveries, and use a 
+           Dead Letter Queue (DLQ) to store notifications that fail after multiple retries.
+
+
+ 30) Describe how you’d implement a load balancer from scratch and handle session persistence.      
+
+       A Load Balancer distributes incoming requests across multiple backend servers to improve performance and availability.    
+
+       How does it work?
+         Client sends a request.
+         Load balancer receives the request.
+         Selects a healthy server (Round Robin, Least Connections, etc.).
+         Forwards the request to that server.
+         Returns the server's response to the client.
+
+         Session Persistence (Sticky Sessions)
+
+           If a user logs in on Server A, future requests from that user should continue going to Server A.
+           
+           This can be achieved by:
+           
+           Cookies (Sticky Sessions)
+           Session ID
+           Or, preferably, storing sessions in a shared store like Redis, allowing any server to handle the reques
+
+           Answer: Build a load balancer that distributes requests using algorithms like Round Robin or Least Connections.
+            For session persistence, use sticky sessions (cookies/session IDs) or, preferably, store sessions in a shared 
+            cache like Redis, so any backend server can process the user's requests.

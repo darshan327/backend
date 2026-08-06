@@ -78,4 +78,40 @@
                 Uses WebSocket	Often uses Redis, Kafka, RabbitMQ
                 Example: Chat between two users	Sending chat messages to all backend servers          
 
+
+24) What strategies would you use to ensure high availability in a distributed system?
+
+    High Availability (HA) means the system remains available and operational even if some servers fail.
                 
+      Strategies
+        Load Balancer → Distributes requests across multiple servers.
+        Multiple Servers (Replication) → If one server fails, another takes over.
+        Database Replication → Maintain copies of the database.
+        Caching (Redis) → Reduces database load.
+        Auto Scaling → Automatically adds more servers during high traffic.
+        Health Checks & Failover → Detects failed servers and redirects traffic.     
+
+    Answer: Use load balancers, multiple application servers, database replication,
+     caching, auto scaling, and failover mechanisms so the system continues running even if individual components fail.   
+
+
+25) Design a rate-limiting system for an API that restricts users to 100 requests per minute. 
+
+     Rate limiting restricts the number of requests a user can make in a given time.
+
+      How does it work?
+        Identify the user (by IP address or User ID).
+        Store the request count in Redis.
+        Allow up to 100 requests per minute.
+        If the user exceeds the limit, return 429 Too Many Requests.
+        Reset the counter after 1 minute.
+
+       Real-life Example
+
+          Imagine a movie theater.
+          
+          Each person receives 100 tokens for one minute.
+          Every time they enter, one token is used.
+          After 100 entries, they must wait until the next minute to get a new set of tokens.
+          
+          Similarly, the API allows only 100 requests per minute. 

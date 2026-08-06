@@ -1,0 +1,40 @@
+1) you accidentally closed a wrong browser tab.
+ chrome restores it instantly using "reopen closed Tab" 
+ which data structure is chrome using , how to design it
+
+      "Chrome uses a Stack to implement the 'Reopen Closed Tab'
+       feature because it follows the Last In, First Out (LIFO) principle.
+        Whenever a tab is closed, Chrome pushes its state—such as the URL, title, and session metadata—onto a stack.
+         When the user presses Ctrl + Shift + T, Chrome pops the top entry from the stack and recreates that tab. Both closing and reopening a tab take O(1) time,
+          making a stack an efficient choice for this feature."
+
+
+2) your code works on localhost:8080 when deploy to production got NullPointerException API_KEY is null in production but you never set API_KEY to null why there is NULLPointerException
+
+    Why does localhost work?
+
+       Because your local machine has:
+       
+       .env file
+       IDE environment variables
+       Docker Compose variables
+       Local configuration
+       
+       Production is a different machine with its own configuration. Your local settings are not automatically copied there.
+
+    Common Reasons
+       1. Missing Environment Variable (Most common)
+       2. .env file not deployed
+       3. Secret Manager not configured
+
+3) two user update the same account user1 deposite 100 user2 deposite 200 database finally stores 200 only where does 100 gone
+
+    "This is called the Lost Update Problem, a type of race condition. 
+    Both users read the same balance before either update is committed. 
+    User 1 calculates ₹1100 and User 2 calculates ₹1200 based on the old balance of ₹1000. 
+    Since User 2 writes last, it overwrites User 1's update, so the final balance becomes ₹1200 instead of ₹1300.
+     We can prevent this using database transactions with row-level locking, optimistic locking with a version field,
+      or atomic SQL updates like UPDATE accounts SET balance = balance + ?."
+
+
+4)       

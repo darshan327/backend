@@ -1,0 +1,66 @@
+6) when you place finger on scanner aadhaar verifies it in 2 seconds 140 crore fingerprnts in database how does aadhaar store 140 crore fingerpriinter and matches in seconds
+
+    "Aadhaar doesn't compare a fingerprint against all 140 crore records. 
+    Fingerprints are converted into compact biometric templates containing unique features such as ridge endings and bifurcations. During authentication,
+     if the user provides their Aadhaar number, the system performs a 1:1 comparison by matching the scanned fingerprint only with that user's stored template. 
+     For identification scenarios, the system uses specialized biometric indexing to narrow the search to a small set of likely candidates before performing detailed matching. 
+     Combined with distributed databases, parallel processing, and optimized matching algorithms, this enables authentication in just a few seconds."
+
+
+7) how does Google Map estimate exactly when you will reach even with traffic ?
+
+    Step 1: Google Knows Your Location
+
+      Your phone continuously sends GPS coordinates.
+
+       Latitude : 12.2958
+
+       Longitude: 76.6394
+
+
+    Step 2: Road Network is a Graph
+
+      Google stores roads as a graph.    
+
+      Nodes = Junctions
+      Edges = Roads
+      Weight = Travel time (or cost)
+      
+      To find the best route, Google uses shortest-path algorithms such as Dijkstra's Algorithm or A* (A-star).
+
+    Step 3: Live Traffic Data
+
+       Millions of phones share anonymous location and speed information.  
+
+    Step 4: Route Calculation
+
+      Suppose there are two routes.  
+
+    Step 5: Machine Learning
+
+      Google also learns from historical patterns.  
+
+    Step 6: Continuous Updates
+
+      Suppose you're driving.  
+
+
+8)  when you type 'www.google.com' and hit enter ... what happens behind the scenes?
+
+    When I type www.google.com and press Enter, the browser first checks its cache for 
+    the website's IP address. If it's not found, it performs a DNS lookup to resolve the
+     domain name to an IP address. Then it establishes a TCP connection using the three-way handshake. 
+     Since Google uses HTTPS, a TLS handshake is performed to create a secure encrypted connection. 
+     The browser sends an HTTP GET request to Google's server. The request first reaches a load balancer,
+      which forwards it to an appropriate web server. The server processes the request, generates the response,
+       and sends back HTML, CSS, and JavaScript. Finally, the browser parses these resources, builds the page, and renders the Google homepage on the screen."
+
+
+9) Ever wondered how spotify stores and manages millions of songs?    
+
+   "Spotify doesn't store audio files directly in a database. Instead, 
+   the songs are stored in scalable object storage, while the database 
+   stores metadata such as the song ID, title, artist, and the file location.
+    When a user plays a song, the backend retrieves the metadata, gets the file location, 
+    and streams the audio from object storage through a CDN. The song is delivered in small chunks
+     rather than downloading the entire file at once, which reduces startup time and supports millions of concurrent users efficiently."

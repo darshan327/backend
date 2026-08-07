@@ -37,4 +37,111 @@
       or atomic SQL updates like UPDATE accounts SET balance = balance + ?."
 
 
-4)       
+4) if anyone can decode a JWT token , why is it still secure and used every where    
+
+    Header
+      Contains information about the token.
+       Example :
+        {
+          "alg": "HS256",
+          "typ": "JWT"
+        }
+
+    Payload
+
+       Contains the user information (called claims).
+       
+       Example:
+       
+       {
+         "userId": 101,
+         "name": "Rahul",
+         "role": "Admin",
+         "exp": 1750000000
+       }    
+
+
+       First, the user logs in using their username/email and password. 
+       The server verifies these credentials with the database. 
+       If they are valid, the server generates a JWT (JSON Web Token) and sends it back to the user.
+
+       The user stores this token (for example, 
+       in an HttpOnly cookie or secure storage). 
+       For every future request to protected APIs, the user sends the JWT in the Authorization header 
+       as a Bearer token instead of sending the username and password again.
+       
+       When the server receives the request, it verifies the JWT's signature and 
+       checks whether it has expired. If the token is valid, the server processes the request and returns the requested data. 
+       If the token is invalid, expired, or tampered with, the server responds with 401 Unauthorized.
+
+
+
+       Answer
+
+       A JWT is encoded, not encrypted. That means anyone can decode the header and payload to see the information inside.
+       
+       However, they cannot modify the token because of the signature.
+       
+       The signature is generated using a secret key (or a private key in asymmetric algorithms), which is known only to the server.
+       
+       If someone changes even one character in the payload, the signature becomes invalid. When the server verifies the token, it detects that the token has been tampered with and returns 401 Unauthorized.
+
+
+5) how do you handle millions of read requests on a single database
+
+    To handle millions of read requests, I would first add Redis to cache frequently 
+    accessed data so repeated requests don't reach the database. Then I'd use read replicas,
+     where the primary database handles writes and replicas handle read queries. A load balancer 
+     distributes read traffic across the replicas. I'd also ensure proper database indexing to optimize query performance.
+      At very large scale, if a single database is no longer sufficient, I'd introduce sharding to distribute data across multiple databases.
+       This combination allows the system to scale while maintaining low latency."
+
+       Solution 1: Read Replicas (Most Common)
+
+          Instead of one database:
+
+             Primary (Master) handles writes (INSERT, UPDATE, DELETE).
+             Read replicas handle SELECT queries.
+
+       Solution 2: Caching (Redis)   
+
+            Many users ask for the same data repeatedly.
+
+             Example:
+             
+             GET /product/101
+             
+             Instead of querying the database every time:  
+
+          Popular data is served from memory, which is much faster than disk.    
+
+       Solution 3: Load Balancer
+
+          If you have multiple read replicas:  
+
+            The load balancer distributes read requests so no single replica becomes overloaded. 
+
+       Solution 4: Database Indexing     
+
+           With an index:
+
+             Book Index
+             
+             Apple → Page 5
+             Banana → Page 20
+             Orange → Page 90
+             
+             The database quickly finds the required row.
+             
+             Indexes significantly improve read performance.
+
+
+       Solution 5: Database Sharding (Very Large Scale)
+
+        If one database becomes too large:
+        
+        Users A-H  → Database 1
+        Users I-P  → Database 2
+        Users Q-Z  → Database 3
+        
+        Each database stores only part of the data, reducing load and improving scalability.      

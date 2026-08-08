@@ -64,3 +64,13 @@
     When a user plays a song, the backend retrieves the metadata, gets the file location, 
     and streams the audio from object storage through a CDN. The song is delivered in small chunks
      rather than downloading the entire file at once, which reduces startup time and supports millions of concurrent users efficiently."
+
+
+10) do you know how does IRCTC clear waiting list tickets and convert to confirmed
+
+     "IRCTC maintains the waiting list in FIFO order. When a confirmed ticket is cancelled,
+      the system starts a database transaction, marks the seat as available, and selects
+       the first passenger in the waiting queue. That passenger is assigned the available seat, 
+       and their ticket status is updated from Waiting List to Confirmed. To prevent two servers 
+       from assigning the same seat or promoting the same passenger, the update is performed inside 
+       a transaction using row-level locking. After the transaction commits, the user is notified through SMS or email."

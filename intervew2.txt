@@ -1,0 +1,19 @@
+11) how apps like instagram and facebook keep you logged in with out asking your password again?
+
+      "Applications like Instagram and Facebook don't ask for the password on every request. 
+      After the first successful login, the server generates an Access Token and a Refresh Token. 
+      The Access Token is sent with every API request and is valid for a short period, such as 15 minutes.
+       When it expires, the client automatically sends the Refresh Token to the server. If the Refresh Token is valid, 
+       the server issues a new Access Token without asking the user to log in again. This provides a good balance between security and user experience."
+
+
+12)  how apps like instagram and facebook keep you logged in with out asking your password again?
+
+      "WhatsApp uses a persistent WebSocket connection for real-time communication. When a user starts typing,
+       the client sends a typing=true event to the server, which immediately forwards it to the recipient,
+        causing the typing indicator to appear. If the user sends the message, the indicator disappears and 
+        the message is delivered. If the user stops typing, closes the app, or loses connection, either a typing=false event 
+        is sent or the server removes the typing indicator after a short timeout if no new typing events are received. 
+        That's why the three dots can disappear even when no message arrives."
+
+        

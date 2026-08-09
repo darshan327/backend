@@ -1,0 +1,54 @@
+31) how acid properties that help in database ?
+
+     1. Atomicity
+
+        Meaning: A transaction happens completely or not at all.
+        
+        Example:
+        Bank transfer ₹1,000 from A to B:
+        
+        Money is deducted from A and added to B → success.
+        If adding to B fails → deduction from A is also cancelled
+
+
+     2. Consistency
+
+         Meaning: Database must remain in a valid state before and after a transaction.
+         
+         Example:
+         If an account cannot have a negative balance, a transaction should not violate that rule. 
+
+    3. Isolation
+
+        Meaning: Multiple transactions running at the same time should not interfere incorrectly with each other.
+        
+        Example:
+        Two people trying to buy the last available product should not both successfully purchase it. 
+
+
+     4. Durability
+
+         Meaning: Once a transaction is successfully committed, the data remains saved, even if the server crashes.
+         
+         Example:
+         You successfully place an order. Even if the server crashes immediately afterward, your order should still exist when the system comes back.    
+
+
+32) CAP Theorem : 
+
+    CAP Theorem says that a distributed system cannot guarantee all three of these at the same time:
+
+      C — Consistency: Every user gets the latest data.
+      A — Availability: Every request gets a response.
+      P — Partition Tolerance: System continues working even if network communication between servers fails.
+
+
+      Banking → CP
+
+        Balance must be accurate.
+        Better to reject a transaction than show incorrect balance.
+        
+        Social Media → AP
+        
+        If a new post/comment takes a few seconds to appear everywhere, that's usually acceptable.
+        The system should remain available.

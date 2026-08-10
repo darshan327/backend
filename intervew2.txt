@@ -16,4 +16,31 @@
         is sent or the server removes the typing indicator after a short timeout if no new typing events are received. 
         That's why the three dots can disappear even when no message arrives."
 
-        
+
+13) multiple people press buttons how does a lift decide which floor to go
+
+      "An elevator uses a scheduling algorithm to decide which floor to serve next. 
+      It doesn't simply follow FIFO because that could cause unnecessary movement. 
+      It generally continues in its current direction and serves pending requests along that direction,
+       usually prioritizing floors closer to the elevator. Once there are no more requests in that direction, 
+       it reverses and serves requests on the other side. This is similar to the SCAN or Elevator scheduling algorithm."  
+
+
+14) how did my iphone predicted snow in himachal before 6 hour ?
+
+     "A weather app doesn't predict weather directly on the phone. 
+     Weather services collect data from satellites, weather stations, radar, and atmospheric sensors.
+      This data is fed into numerical weather prediction models that simulate how the atmosphere will evolve. 
+      The resulting forecast is exposed through an API, and the iPhone retrieves it and displays the predicted
+       temperature, rain or snow probability, and timing. The prediction is continuously updated as new weather data arrives."
+
+
+15) 50 crore products on amazon , you search one result comes in 0.2 how is that possible ?
+
+     "Amazon doesn't search through all 50 crore products for every query. Products 
+     are pre-indexed in a distributed search system. When a user searches for something, 
+     the search service looks up the relevant terms in the index and quickly produces a 
+     relatively small set of candidate products. A ranking system then orders those candidates
+      based on relevance, availability, popularity, and other signals.
+       The search index is distributed across many servers so queries can execute in parallel,
+        and caching further reduces latency for popular searches. That's how a huge catalog can return results in a few hundred milliseconds." 

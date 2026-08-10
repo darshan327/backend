@@ -52,3 +52,33 @@
         
         If a new post/comment takes a few seconds to appear everywhere, that's usually acceptable.
         The system should remain available.
+
+33) how would you optimize the slow performing sql query that join multiple large table
+
+     When a query joins multiple large tables and runs slowly, we optimize how the database finds and combines the data
+
+       Add indexes
+         Create indexes on columns used in:
+         
+         JOIN
+         WHERE
+         ORDER BY
+
+     Select only required columns
+
+        Avoid:
+        
+        SELECT *
+        
+        Use:
+        
+        SELECT u.name, o.order_date   
+
+     Avoid unnecessary JOINs
+
+      Only join tables whose data is actually required.    
+
+
+     Answer:
+      First use EXPLAIN to identify the bottleneck, then add appropriate indexes,
+       filter data early, select only required columns, remove unnecessary joins, and consider partitioning for very large tables.    

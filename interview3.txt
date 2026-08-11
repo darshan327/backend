@@ -1,0 +1,26 @@
+16) two threads one variable . both change it at same time which change will survive ?
+
+     "When two threads modify the same shared variable concurrently without synchronization,
+      it's a race condition. The final value is not deterministic; whichever write happens 
+      last can overwrite the other. We use synchronization mechanisms such as mutexes, locks, 
+      or atomic operations to make the operation thread-safe."
+
+
+17)  you have 30 second , explain why ArrayList is faster than linklist sometimes
+
+       "ArrayList is sometimes faster than LinkedList because ArrayList stores elements 
+       in a contiguous memory block, so accessing an element by index is O(1) and 
+       it has good CPU cache locality. LinkedList stores elements in separate nodes connected by pointers,
+        so accessing an element requires traversal and is O(n), with additional pointer overhead and poorer cache locality.
+         However, LinkedList can be faster for insertions or deletions at a known node because it doesn't need to shift elements,
+          whereas ArrayList may need to shift elements."
+
+ 18) you accidentally ran DELETE query in production and delete 1 million records how would you recover the data
+
+       "First, I'd stop the affected application or job to prevent further changes. If the DELETE is still inside 
+       an uncommitted transaction, I'd immediately rollback it. If it has been committed, I'd use the database's 
+       backups and transaction/WAL/bin logs to perform point-in-time recovery to just before the accidental DELETE. 
+       I would normally restore to a separate recovery database first, verify the missing records, and then carefully 
+       restore or merge them into production so that legitimate changes made after the incident aren't lost. After recovery, 
+       I'd investigate the incident and add safeguards such as least-privilege access, confirmation controls, backups, audit 
+       logging, and tested restore procedures."      

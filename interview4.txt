@@ -1,0 +1,6 @@
+21) A hacker steals your JWT token ... you immediately click logout. but the hacker can still access your account how to solve this
+
+      "A JWT is normally stateless, so simply logging out doesn't invalidate a stolen access token if it's still unexpired and the server
+       only checks its signature. To solve this, we use short-lived access tokens and longer-lived refresh tokens. On logout, 
+       we revoke the refresh token, so the attacker can't obtain a new access token, and the stolen access token expires quickly.
+        If immediate revocation is required, we can maintain a token blacklist or token-version mechanism and reject revoked tokens on every request."

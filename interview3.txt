@@ -26,7 +26,7 @@
        logging, and tested restore procedures."      
 
 
-19) Netflix has million of user how does it stream 4k videos wthout buffering
+19) Netflix has million of user how does it stream 4k videos without buffering  
 
      "Netflix handles millions of users using a distributed CDN architecture.
       Videos are encoded into multiple resolutions and divided into small segments.

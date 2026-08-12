@@ -24,3 +24,22 @@
        restore or merge them into production so that legitimate changes made after the incident aren't lost. After recovery, 
        I'd investigate the incident and add safeguards such as least-privilege access, confirmation controls, backups, audit 
        logging, and tested restore procedures."      
+
+
+19) Netflix has million of user how does it stream 4k videos wthout buffering
+
+     "Netflix handles millions of users using a distributed CDN architecture.
+      Videos are encoded into multiple resolutions and divided into small segments.
+       Popular content is cached close to users through Netflix's Open Connect CDN infrastructure. 
+       When a user starts playback, the client downloads segments ahead of playback and maintains a buffer. 
+       It also uses adaptive bitrate streaming, so if network bandwidth drops,
+        the quality can automatically decrease instead of causing buffering.
+         Distributed CDN servers prevent millions of users from overwhelming a single origin server 
+
+20) your API is working on localhost : 8000 UI is working on localhost : 3000 still why do you get CORS error ?
+
+      "CORS occurs because localhost:3000 and localhost:8000 are different origins. An origin consists of protocol,
+       host, and port. Although both use localhost, their ports differ. When the frontend makes a cross-origin request, 
+       the browser checks whether the backend explicitly allows the frontend origin through CORS response headers. 
+       If those headers are missing or incorrect, the browser blocks the response. We fix it by configuring CORS on the backend 
+       to allow http://localhost:3000."

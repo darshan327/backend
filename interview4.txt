@@ -4,3 +4,32 @@
        only checks its signature. To solve this, we use short-lived access tokens and longer-lived refresh tokens. On logout, 
        we revoke the refresh token, so the attacker can't obtain a new access token, and the stolen access token expires quickly.
         If immediate revocation is required, we can maintain a token blacklist or token-version mechanism and reject revoked tokens on every request."
+
+
+22) what hapen if your JWT token expires in the middle of an Api Request ?
+
+       "If a JWT expires while an API request is in progress, the result depends on
+        when the server validates the token. If the token is already expired when the
+         server validates it, the server returns 401 Unauthorized. The frontend can then 
+         use the refresh token to obtain a new access token and retry the original request.
+          If the server had already successfully authenticated the request before the token expired, 
+          the request normally continues because authentication isn't continuously rechecked during execution."
+
+
+23) you cache stores user data suddenly cache expires 10000 request hit DB for same data Database crashes how do you prevent it ?
+
+     "This is called a cache stampede or thundering herd problem. When a popular cache entry expires, thousands of
+      requests can simultaneously miss the cache and hit the database. I'd use a distributed lock so only one request
+       fetches the data and repopulates the cache while others wait or receive stale data. I'd also use TTL jitter to 
+       prevent many keys from expiring simultaneously, stale-while-revalidate where acceptable, and database protections
+        such as connection pooling and rate limiting."
+
+24) you write a sql query on your laptop it runs in 100 milliseconds perfectly but in Prod , 
+       it takes 5 sec to run NO code changes at all why is production 50x slower    
+
+      "If the same SQL query takes 100 ms locally but 5 seconds in production, 
+      I wouldn't assume the SQL code is the problem. Production may have much more data, 
+      different or missing indexes, different optimizer statistics and execution plans, 
+      higher concurrent traffic, lock contention, or slower hardware and I/O. I'd first run EXPLAIN ANALYZE in production, 
+      compare the execution plans and indexes, and check database CPU, memory, I/O, connection pool, and lock-wait metrics. 
+      The key is to identify whether the 5 seconds are spent actually executing the query or simply waiting for database resources."     

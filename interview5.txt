@@ -1,0 +1,6 @@
+26) A website has 15 server ... how does Load balancer decide which server will get your request
+
+      "A load balancer distributes incoming requests among multiple backend servers using algorithms 
+      such as Round Robin, Least Connections, or Weighted Load Balancing. It also performs health checks
+       and removes unhealthy servers from the pool. The choice depends on the application's requirements—for example,
+        Round Robin for equal servers and Least Connections when request durations vary.

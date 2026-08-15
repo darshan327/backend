@@ -33,3 +33,11 @@
       higher concurrent traffic, lock contention, or slower hardware and I/O. I'd first run EXPLAIN ANALYZE in production, 
       compare the execution plans and indexes, and check database CPU, memory, I/O, connection pool, and lock-wait metrics. 
       The key is to identify whether the 5 seconds are spent actually executing the query or simply waiting for database resources."     
+
+25) jwt expires in 1 hour hacker steals at 59 minutes uses for 1 minute after logout how to revoke it immediately
+
+      "A JWT is normally stateless, so if a stolen token is still valid, logout alone won't invalidate it. 
+      If immediate revocation is required, I'd include a unique jti in the JWT and store revoked token IDs 
+      in a fast store such as Redis. On logout, I add the token's jti to the revocation store with a TTL equal to
+       the token's remaining lifetime. Every authenticated request checks both JWT validity and revocation status. 
+       This lets us reject the stolen token immediately, even though its expiration time hasn't been reached."

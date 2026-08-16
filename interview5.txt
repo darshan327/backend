@@ -4,3 +4,14 @@
       such as Round Robin, Least Connections, or Weighted Load Balancing. It also performs health checks
        and removes unhealthy servers from the pool. The choice depends on the application's requirements—for example,
         Round Robin for equal servers and Least Connections when request durations vary.
+
+
+27) what will happen if you did not catched a exception properly in payment service in production
+
+     "If an exception isn't handled properly in a production payment service, the service could 
+     crash or return an incorrect result. The most dangerous case is when the payment gateway
+      successfully charges the customer but an exception occurs before our service records the
+       successful payment. The customer may retry and get charged twice. I'd handle exceptions 
+       at the service boundary, use idempotency keys to make retries safe, carefully retry only
+        appropriate operations, log and monitor failures, and use reconciliation between our payment
+         records and the gateway to detect and resolve inconsistencies."

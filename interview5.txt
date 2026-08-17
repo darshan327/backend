@@ -15,3 +15,26 @@
        at the service boundary, use idempotency keys to make retries safe, carefully retry only
         appropriate operations, log and monitor failures, and use reconciliation between our payment
          records and the gateway to detect and resolve inconsistencies."
+
+
+28)  two users updating the same Record your system DEADLOCKS both . Both transactions freeze forever. users can't do anything how to prevent this ?
+
+      "A deadlock occurs when two transactions hold locks that the other transaction needs, creating a circular wait. To prevent it, I'd enforce a 
+      consistent lock acquisition order, keep transactions short, use appropriate lock timeouts, and rely on the database's deadlock detection to 
+      roll back one transaction. The application should catch the deadlock error and retry the failed transaction when appropriate."
+
+
+
+29) your new app works fine for 7 days . then memory keeps increasing daily. After 2 weeks if crashes . After Restart perfect agian what's the issue that nobody see?
+
+     "The most likely issue is a memory leak. The application is continuously allocating memory but some objects remain referenced and can't be
+      garbage-collected, such as unbounded caches, global collections, event listeners, or queues. Memory therefore grows gradually until the process 
+      runs out of memory and crashes. Restarting releases all process memory, which explains why it works normally again. In production I'd monitor heap usage, 
+      take heap snapshots or memory profiles, identify which objects are being retained, fix the leak, and use process recycling only as a temporary safety measure."
+
+
+30) 50 users hit your app at same time App Freezes completly for 30 SECONDS your database is PERFECT your server is perfect But user still see timeout why is your app still hanging?
+
+    "If the database and server are healthy but 50 concurrent users cause the application to freeze, I'd suspect an application-level bottleneck such as thread-pool exhaustion,
+     connection-pool exhaustion, blocking external calls, locks, or deadlocks. For example, if all worker threads are blocked waiting for a slow external API for 30 seconds,
+      new requests cannot get a worker and eventually time out. I'd investigate thread dumps, pool utilization, request traces, external dependency latency, and lock contention."

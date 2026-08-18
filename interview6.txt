@@ -1,0 +1,23 @@
+31) Both JWT and OAuth do authetication Most developers pick wrong one . when to use JWT ? when to use OAuth ? what the actual difference ?
+
+     "JWT and OAuth aren't competing technologies. JWT is a token format, while OAuth 2.0 is an authorization framework. I would typically
+      use JWT-based authentication when I control my own frontend and backend and need to authenticate API requests. I'd use OAuth when my 
+      application needs delegated access to another service, such as allowing an app to access a user's Google Calendar without knowing their 
+      Google password. For actual user authentication through an OAuth provider, I'd typically use OpenID Connect, which is built on OAuth 2.0. 
+      OAuth tokens can themselves be JWTs, so the two can work together."
+
+32) you accidentally deployed a bug to production . millions of users are affected . what do you do first
+
+    "My first priority would be to reduce the blast radius and restore service, not immediately debug the code.
+     I'd stop or pause the deployment and either roll back to the last known-good version or disable the affected 
+     feature using a feature flag. Then I'd verify recovery through error rate, latency, and business metrics.
+      Once users are stable, I'd preserve logs and traces, identify the root cause, fix and test it, and deploy
+       gradually using a canary or staged rollout."
+
+33) explain API gateway
+
+     "An API Gateway is a single entry point for clients in a distributed or microservices architecture.
+      It receives API requests and routes them to the appropriate backend service. It can also handle cross-cutting 
+      concerns such as authentication, rate limiting, logging, SSL termination, request transformation, and sometimes
+       load balancing. For example, /users can be routed to User Service, /orders to Order Service, and /payments to 
+       Payment Service, while the frontend only communicates with the gateway."      

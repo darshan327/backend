@@ -21,3 +21,18 @@
       concerns such as authentication, rate limiting, logging, SSL termination, request transformation, and sometimes
        load balancing. For example, /users can be routed to User Service, /orders to Order Service, and /payments to 
        Payment Service, while the frontend only communicates with the gateway."      
+
+34) what is difference between API and RESTAPI
+
+    "REST API is a type of API. API is the general interface through which software components communicate, 
+    while REST API follows REST architectural principles, typically using HTTP methods such as GET, POST, PUT,
+     and DELETE to operate on resources."
+
+
+35) what will happen if you remove primary key from a database , which contain 10 million records
+
+     "Removing a primary key from a table with 10 million rows does not normally delete the existing data. 
+     It removes the primary-key constraint, so uniqueness and NOT NULL enforcement for that key are lost. 
+     It can also remove the primary-key index depending on the database, which can severely affect query performance.
+      It may also affect foreign-key relationships that depend on that primary key. So in production, 
+      I would first check dependencies, indexes, and query performance before removing it."

@@ -1,8 +1,8 @@
 1) What is the Role of Backend in a Web Application? How Does It Differ from Frontend?
 
-  The backend is the server-side part of a web application.
-   It processes user requests, performs business logic,
-    communicates with the database, and sends the required data back to the frontend.
+     The backend is the server-side part of a web application.
+     It processes user requests, performs business logic,
+      communicates with the database, and sends the required data back to the frontend.
 
     The backend is not directly visible to users, but it is responsible for making the application work.
 
